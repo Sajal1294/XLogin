@@ -10,45 +10,39 @@ const XLogin = () => {
     e.preventDefault();
     setSubmitted(true);
 
-    if (username === "" || password === "") {
+    if (!username || !password) {
       setMessage("Both fields are required.");
     } else if (username === "user" && password === "password") {
-      setMessage("Welcome, user!");
+      setMessage("Welcome, user");
     } else {
       setMessage("Invalid username or password");
     }
   };
 
   return (
-    <div style={{ maxWidth: "300px", margin: "0 auto", padding: "20px" }}>
+    <div>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username</label><br />
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <br />
-        <div>
-          <label htmlFor="password">Password</label><br />
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <br />
+        <label htmlFor="username">Username</label>
+        <input
+          id="username"
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+
+        <label htmlFor="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
         <button type="submit">Submit</button>
       </form>
 
       {submitted && (
-        <p style={{ marginTop: "20px", color: message.includes("Welcome") ? "green" : "red" }}>
-          {message}
-        </p>
+        <p style={{ marginTop: "10px" }}>{message}</p>
       )}
     </div>
   );
